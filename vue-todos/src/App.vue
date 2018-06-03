@@ -26,29 +26,33 @@
     import './assets/todos.less'
     import moment from 'moment'
     import 'moment/locale/zh-cn'
-    moment.locale('zh-cn')
+
+    moment.locale('zh-cn') // 日期库
 
     export default {
-        name: 'app',
-        data () {
+        name: 'app', //  <div id="app">
+        data() {
             return {
-                newTodo:'',
+                newTodo: '',
                 title: 'vue-todos',
                 todos: []
             }
         },
-        created (){
+        // vue实例创建完成后执行的钩子函数
+        created() {
             if (this.is_initialized) {
                 this.todos = JSON.parse(localStorage.getItem('VUE-TODOS'))
             }
         },
+        // 计算属性
         computed: {
-            is_initialized (){
+            is_initialized() {
                 return localStorage.getItem('VUE-TODOS') != null
             }
         },
+        // 过滤器
         filters: {
-            date(val){
+            date(val) {
                 return moment(val).calendar()
             }
         },
@@ -62,11 +66,11 @@
                 this.saveToStore();
                 this.newTodo = ''
             },
-            delItem (todo) {
+            delItem(todo) {
                 this.todos = this.todos.filter((x) => x !== todo)
                 this.saveToStore()
             },
-            saveToStore(){
+            saveToStore() {
                 localStorage.setItem('VUE-TODOS', JSON.stringify(this.todos))
             }
         }

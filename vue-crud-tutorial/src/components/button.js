@@ -25,7 +25,7 @@ export default {
       default: ''
     }
   },
-  render (h) {
+  render(h) {
     const data = {
       class: {
         'uk-button': true,
@@ -51,15 +51,26 @@ export default {
       }
     }
     return (
-      <button disabled={ this.disabled }
-              on-click={ clickHandler }
-              {...data}>
-      { _when(this.icon, (
-        <i class={cssIcon}>
-        </i>)
-      )
-      }
-      { this.$slots.default }
-    </button>)
+      < button
+    disabled = {this.disabled
+  }
+    on - click = {clickHandler}
+    {...
+      data
+    }
+  >
+    {
+      _when(this.icon, (
+        < i
+    class
+      = {cssIcon} >
+        < /i>)
+    )
+    }
+    {
+      this.$slots.default
+    }
+  <
+    /button>)
   }
 }

@@ -15,19 +15,21 @@ const Home = resolve => require(['./Home.vue'], resolve)
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
+// 创建vue路由
 const router = new VueRouter({
     mode: 'history',
     base: __dirname,
     linkActiveClass: "active",
     routes: [
-        {name:'Home', path: '/', component: Home},
-        {name:'Categories',path: '/categories', component: Category},
-        {name:'ShoppingCart',path: '/shopping-cart', component: ShoppingCart},
-        {name:'Me',path: '/me', component: Me},
-        {name:'BookDetail',path: '/books/:id', component: BookDetail}
+        {name: 'Home', path: '/', component: Home},
+        {name: 'Categories', path: '/categories', component: Category},
+        {name: 'ShoppingCart', path: '/shopping-cart', component: ShoppingCart},
+        {name: 'Me', path: '/me', component: Me},
+        {name: 'BookDetail', path: '/books/:id', component: BookDetail}
     ]
 })
 
+// 创建vue实例
 new Vue({
     el: '#app',
     router,

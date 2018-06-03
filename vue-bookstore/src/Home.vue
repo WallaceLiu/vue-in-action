@@ -18,7 +18,7 @@
                        heading="编辑推荐">
             </book-list>
         </div>
- 
+
         <modal-dialog ref="dialog">
             <div slot="heading"></div>
             <div>
@@ -32,8 +32,8 @@
 <style>
     .announcement {
         font-size: 12px;
-        padding:5px;
-        background:#fff;
+        padding: 5px;
+        background: #fff;
     }
 
     .announcement > label {
@@ -48,7 +48,7 @@
     .announcement > span {
         padding: 3px 10px;
         color: #333;
-        display:inline-block;
+        display: inline-block;
     }
 </style>
 <script type="text/ecmascript-6">
@@ -57,14 +57,14 @@
     import ModalDialog from "./components/dialog.vue"
     import faker from "./fixtures/faker"
 
-    export default{
-        data () {
+    export default {
+        data() {
             return {
                 page_data: undefined,
-                selected:undefined
+                selected: undefined
             }
         },
-        mounted(){
+        mounted() {
             document.title = "Book store"
         },
         created() {
@@ -78,9 +78,9 @@
 //            })
 
         },
-        components: {Slider, BookList,ModalDialog},
+        components: {Slider, BookList, ModalDialog}, //使用控件
         methods: {
-            preview (book) {
+            preview(book) {
                 this.selected = book
                 this.$refs.dialog.open()
             }

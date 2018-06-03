@@ -20,8 +20,7 @@ Vue.use(VeeValidate, {
 Vue.http.interceptors.push((request, next) => {
   if (request.url.indexOf('/api/') > -1) {
     let modal = window.UIkit.modal.blockUI(`<div class="uk-modal-spinner"></div>
-<p class="uk-text-center">玩命加载中...</p>`, { center: true })
-
+<p class="uk-text-center">玩命加载中...</p>`, {center: true})
     next((response) => {
       modal.hide()
       return response

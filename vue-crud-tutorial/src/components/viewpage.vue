@@ -32,6 +32,7 @@
 </template>
 <script>
   import PageHeader from './pageheader'
+
   export default {
     props: ['title', 'subTitle'],
     components: {PageHeader}

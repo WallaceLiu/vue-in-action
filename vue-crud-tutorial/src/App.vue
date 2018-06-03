@@ -113,9 +113,11 @@
         <div slot="footer"
              class="uk-modal-footer uk-text-right">
           <uk-button color="primary"
-                     @click="save">保存</uk-button>
+                     @click="save">保存
+          </uk-button>
           <uk-button color="danger"
-                     @click="$refs.modal.close()">关闭</uk-button>
+                     @click="$refs.modal.close()">关闭
+          </uk-button>
         </div>
       </modal>
     </view-page>
@@ -135,7 +137,7 @@
   import _ from 'lodash'
 
   export default {
-    data () {
+    data() {
       return {
         terms: '',
         sortingKey: '',
@@ -149,35 +151,35 @@
         selection: []
       }
     },
-    created () {
+    created() {
       this.bookService = this.$resource('/api/books')
       this.fetchBooks()
     },
     computed: {
-      bookFilter () {
+      bookFilter() {
         return this.terms.length ? this.books.filter(x => x.name.indexOf(this.terms) > -1) : this.books
       },
-      hasSelection () {
+      hasSelection() {
         return this.selection.length > 0
       }
     },
     filters: {
-      join (val) {
+      join(val) {
         return (val) ? val.join(',') : '无名氏'
       }
     },
     methods: {
-      sorted (key) {
+      sorted(key) {
         return key === this.sortingKey
       },
-      filterByBookName (terms) {
+      filterByBookName(terms) {
         this.terms = terms
         this.fetchBooks(1, terms)
       },
-      pageChanged (pageIndex) {
+      pageChanged(pageIndex) {
         this.fetchBooks(pageIndex, this.terms)
       },
-      fetchBooks (pageIndex = 1, filter = '') {
+      fetchBooks(pageIndex = 1, filter = '') {
         return this.bookService.query({page: pageIndex, size: this.pageSize, filter: filter})
           .then((res) => {
             this.books = res.body.data
@@ -186,10 +188,10 @@
             console.log(error)
           })
       },
-      refreshBooks () {
+      refreshBooks() {
         return this.fetchBooks(this.currentPage, this.terms)
       },
-      selectChanged (book, e) {
+      selectChanged(book, e) {
         // 将 book.selected 绑定到checkbox上而同时用change事件检测哪
         // 些 book.selected 为true 因为 `selected` 在book上是不存在的
         // 而正因此我们得到一个思路,可以为对象增加一些辅助属性
@@ -201,29 +203,29 @@
           this.selection = _.reject(this.selection, b => book.isbn === b)
         }
       },
-      newBook () {
+      newBook() {
         this.current = {}
         this.statusText = '添加新的图书'
         this.$refs.modal.open()
       },
-      editBook (book) {
+      editBook(book) {
         // 与实例拖钩进行克隆
         this.current = _.extend({}, book)
         this.statusText = `编辑${book.name}`
         this.$refs.modal.open()
       },
-      sortBy (key) {
+      sortBy(key) {
         if (key === this.sortingKey) {
           this.direction = this.direction === 'asc' ? 'desc' : 'asc'
         }
         this.sortingKey = key
         this.books = _.orderBy(this.books, key, this.direction)
       },
-      save () {
+      save() {
         this.bookService.save(this.current)
         this.refreshBooks()
       },
-      removeBooks () {
+      removeBooks() {
         // this.books = this.books.filter(x =>x != book)
         this.$ui.confirm('真的要删除所选中的图书吗?', () => {
           this.$http.delete('/api/books', {body: this.selection})

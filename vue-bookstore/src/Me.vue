@@ -3,5 +3,5 @@
 </template>
 <style></style>
 <script type="text/ecmascript-6">
-    export default{}
+    export default {}
 </script>

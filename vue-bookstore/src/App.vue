@@ -8,10 +8,11 @@
 </template>
 
 <script type="text/ecmascript-6">
-    import Tabs from "./components/tabs.vue"
+    import Tabs from "./components/tabs.vue" // 自定义组件
     import "./assets/less/site.less"
+
     export default {
-        components: {Tabs}
+        components: {Tabs} // 使用组件
     }
 </script>
 
