@@ -1,44 +1,43 @@
-
 const webpackConfig = require('./webpack.config.js');
 delete webpackConfig.entry;
 
-module.exports = function(config) {
-  config.set({
+module.exports = function (config) {
+	config.set({
 
-    basePath: '',
+		basePath: '',
 
-    frameworks: ['jasmine'],
+		frameworks: ['jasmine'],
 
-    files: [
-      'test/*.js'
-    ],
+		files: [
+			'test/*.js'
+		],
 
-    exclude: [ ],
+		exclude: [],
 
-    preprocessors: {
-       'test/*.js': ['webpack']
-    },
+		preprocessors: {
+			'test/*.js': ['webpack']
+		},
 
-    webpack: webpackConfig,
+		webpack: webpackConfig,
 
-    webpackMiddleware: {
-      noInfo: true
-    },
+		webpackMiddleware: {
+			noInfo: true
+		},
 
-    reporters: ['progress'],
+		reporters: ['progress'],
 
-    port: 9876,
+		port: 9876,
 
-    colors: true,
+		colors: true,
 
-    logLevel: config.LOG_INFO,
+		logLevel: config.LOG_INFO,
 
-    autoWatch: true,
+		autoWatch: true,
 
-    singleRun: true,
+		singleRun: true,
 
-    browsers: ['PhantomJS'],
+		browsers: ['PhantomJS'],
 
-    concurrency: Infinity
-  })
+		concurrency: Infinity
+	})
 }
